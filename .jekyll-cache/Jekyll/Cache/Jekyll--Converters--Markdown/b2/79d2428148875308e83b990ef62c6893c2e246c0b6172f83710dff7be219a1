@@ -1,0 +1,381 @@
+I"0<p><a href="https://twitter.com/samnewman">©Photo Credit</a></p>
+
+<p>Gaining visibility into an application’s attack surface is really important in identifying risk areas. In cases of an attack, it can also help in determining root cause i.e. the part(s) of an attack surface that was the origin of the breach.</p>
+
+<p>In using an attacker’s perspective through reconnaissance, you can proactively identify attack surfaces. This will always help in quickly noticing attack surface changes or deciding on the best strategy for minimizing risk.</p>
+
+<h2 id="football-analogy-attack-surface-identification-via-recon">Football Analogy: Attack Surface Identification via Recon</h2>
+
+<p>Let’s do an illustration by using analogies from the beautiful game of football, specifically using a phase of play that has been well discussed in the last couple of years: <code class="highlighter-rouge">The Build-Up Play</code>. Think of this as any football game where in building up from the back, <code class="highlighter-rouge">the goal is to move the ball (in this case our workflow/process) from our half to the opponent’s half</code>.</p>
+
+<p>Befittingly we’ll be using the 4-3-3 formation to show this, used by some of the greatest and most celebrated teams of all time; Ajax 1971–73, Bayern 1973–76, Barcelona 2008-2012.</p>
+
+<h2 id="pathway-1-build-up-play-through-the-middle">PATHWAY 1: Build-Up Play (Through the Middle)</h2>
+<p><strong><em>A flowing move through the middle is always fun</em></strong>
+<img src="/assets/img/433-1.png" alt="Through The Middle" /></p>
+
+<blockquote>
+  <p>[6] SUBDOMAIN ENUMERATION</p>
+</blockquote>
+
+<figure class="highlight"><pre><code class="language-markdown" data-lang="markdown">Usually, the first task is to discover subdomains in a given scope/target list and then map it to their corresponding ip addresses.</code></pre></figure>
+
+<ul>
+  <li><strong>ATTACK SURFACE (DNS Information)</strong></li>
+</ul>
+
+<p>There is great value in having complete knowledge of all DNS properties (e.g. subdomains) mapped to an application. Subdomain enumeration is a process that involves a lot of open source intelligence (OSINT), by combing various sources for valuable data like ip addresses, whois info, asn, zone records, email addresses etc. A company could have subdomains that they are not aware of, which affects visibility into those subdomains and could make them less secure. A good tool for finding, tracking and automating the DNS discovery process is Amass.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Category</th>
+      <th>Component</th>
+      <th>Notes</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>DNS Information</td>
+      <td>Subdomains</td>
+      <td>test.corp.ng</td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td>IP Address</td>
+      <td>10.10.10.10</td>
+    </tr>
+  </tbody>
+</table>
+
+<p><br />
+<br /></p>
+
+<blockquote>
+  <p>[5] PORT SCAN</p>
+</blockquote>
+
+<figure class="highlight"><pre><code class="language-markdown" data-lang="markdown">Using the ip address(es) mapped to the (sub)domain, we do a port scan to get a list of open ports and the services running on them.</code></pre></figure>
+
+<ul>
+  <li><strong>ATTACK SURFACE (Network Information)</strong></li>
+</ul>
+
+<p>Disabling unneeded ports or services is a well known hardening control to help reduce attack surfaces.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Category</th>
+      <th>Component</th>
+      <th>Notes</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Network Information</td>
+      <td>Open Ports/Protocol</td>
+      <td>8443 (TCP)</td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td>Running Services</td>
+      <td>Apache</td>
+    </tr>
+  </tbody>
+</table>
+
+<p><br />
+<br /></p>
+
+<blockquote>
+  <p>[4] GATHER VALID TARGETS</p>
+</blockquote>
+
+<figure class="highlight"><pre><code class="language-markdown" data-lang="markdown">This is probably the most important step as it involves visually identifying subdomains through screenshots, walking through the application and mapping each functionality. The questions to ask here are: What does it do and How does it do it? </code></pre></figure>
+
+<ul>
+  <li><strong>ATTACK SURFACE (Input Vectors)</strong></li>
+</ul>
+
+<p>In navigating the application, the aim here is to discover any functionality in the application that accept input.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Category</th>
+      <th>Component</th>
+      <th>Notes</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Input Vectors</td>
+      <td>Data entry {CRUD} forms &amp; Fields</td>
+      <td>/signup</td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td>Inquiries and Search Functions</td>
+      <td>/search</td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td>File Upload Functions</td>
+      <td>/upload</td>
+    </tr>
+  </tbody>
+</table>
+
+<ul>
+  <li><strong>ATTACK SURFACE (Access Controls)</strong></li>
+</ul>
+
+<p>We also want to understand how the application implements security measures for things like authentication, authorization or session management.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Category</th>
+      <th>Component</th>
+      <th>Notes</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Access Controls</td>
+      <td>Roles</td>
+      <td>Admin, User</td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td>Privileges</td>
+      <td>/upload, /search</td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td>Session State/Cookies</td>
+      <td>#####, ####</td>
+    </tr>
+  </tbody>
+</table>
+
+<ul>
+  <li><strong>ATTACK SURFACE (Key Functionality)</strong></li>
+</ul>
+
+<p>Finally we try to identify key functions based on the business workflow or logic.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Category</th>
+      <th>Component</th>
+      <th>Notes</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Key Functionality</td>
+      <td>Business Workflow/Logic</td>
+      <td>API Calls, Database Access</td>
+    </tr>
+  </tbody>
+</table>
+
+<p><br />
+<br /></p>
+
+<blockquote>
+  <p>[8] DIRECTORY-FILE DISCOVERY</p>
+</blockquote>
+
+<figure class="highlight"><pre><code class="language-markdown" data-lang="markdown">Moving forward, using the list of valid subdomain targets as input, we try to check for information disclosure on existing/hidden paths and files with tools like dirsearch/gobuster. Doing this will also help us have an idea of the directory structure. This step also marks the first time we move to the opposition’s half, thereby making our build-up play successful.</code></pre></figure>
+
+<ul>
+  <li><strong>ATTACK SURFACE (Hidden Content)</strong></li>
+</ul>
+
+<p>It is time to find additional data, anything that will uncover parts of the application that may be hidden or content that does not have direct links to pages.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Category</th>
+      <th>Component</th>
+      <th>Notes</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Hidden Content</td>
+      <td>Files</td>
+      <td>.bak .tmp .conf “cache:” robots.txt</td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td>Directories</td>
+      <td>/ccard/2020, admin panel, error pages</td>
+    </tr>
+  </tbody>
+</table>
+
+<p><br />
+<br /></p>
+
+<blockquote>
+  <p>[10] PLATFORM IDENTIFICATION</p>
+</blockquote>
+
+<figure class="highlight"><pre><code class="language-markdown" data-lang="markdown">What does it run on? Finally, using the valid list of subdomains as input again, we can identify the different platforms or technologies (e.g. development/cloud platform) used by the web application.</code></pre></figure>
+
+<ul>
+  <li><strong>ATTACK SURFACE (Tech Stack)</strong></li>
+</ul>
+
+<table>
+  <thead>
+    <tr>
+      <th>Category</th>
+      <th>Component</th>
+      <th>Notes</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Tech Stack</td>
+      <td>Language</td>
+      <td>python</td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td>Framework</td>
+      <td>django</td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td>Technologies/Platforms</td>
+      <td>aws github</td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td>Integrations/Plugins</td>
+      <td>shopify</td>
+    </tr>
+  </tbody>
+</table>
+
+<p><br />
+<br /></p>
+
+<h2 id="pathway-2-build-up-play-long-ball-over-the-top">PATHWAY 2: Build-Up Play (Long Ball Over the Top)</h2>
+<p><strong><em>A long ball over the top could achieve the same goal</em></strong>
+<img src="/assets/img/433-3.png" alt="Through The Middle" /></p>
+
+<blockquote>
+  <p>[9] FIND MISCONFIGURATIONS</p>
+</blockquote>
+
+<figure class="highlight"><pre><code class="language-markdown" data-lang="markdown">Quick misconfiguration checks for low-hanging fruits can either be made on the list of valid subdomains or from the target list. We can check for things like subdomain takeover or CORS misconfiguration etc. depending on the identified platforms.</code></pre></figure>
+
+<ul>
+  <li><strong>ATTACK SURFACE (3rd Party Platforms)</strong></li>
+</ul>
+
+<table>
+  <thead>
+    <tr>
+      <th>Category</th>
+      <th>Component</th>
+      <th>Notes</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>3rd Party Platforms</td>
+      <td>Configuration Weaknesses</td>
+      <td>(subdomain takeover) example.corp.ng/404.html</td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td> </td>
+      <td>(github page) api secret key</td>
+    </tr>
+  </tbody>
+</table>
+
+<p><br />
+<br /></p>
+
+<h2 id="pathway-3-build-up-play-through-the-flanks">PATHWAY 3: Build-Up Play (Through the Flanks)</h2>
+<p><strong><em>Sometimes the flanks provide a better path to move upfield</em></strong>
+<img src="/assets/img/433-2.png" alt="Through The Middle" /></p>
+
+<blockquote>
+  <p>[2]&amp;[5] DISCOVER PUBLIC EXPLOITS</p>
+</blockquote>
+
+<figure class="highlight"><pre><code class="language-markdown" data-lang="markdown">Going through the left flank, we can use the output of the nmap results in the previous port scan to enumerate running web services (e.g. CMS Version) and search for disclosed vulnerabilities (searchsploit). </code></pre></figure>
+
+<ul>
+  <li><strong>ATTACK SURFACE (Known Vulnerabilities)</strong></li>
+</ul>
+
+<p>Vulnerability scanners primarily perform this function, which is to identify service/software versions and compare it with a database of known vulnerabilities or use any signature-matching process. However because of the possibility of false positives or negatives, it is always a good idea to manually review vulnerability scan results when possible.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Category</th>
+      <th>Component</th>
+      <th>Notes</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Known Vulnerabilities</td>
+      <td>Service/Software Exploits</td>
+      <td>RCE exploit (apache version)</td>
+    </tr>
+  </tbody>
+</table>
+
+<p><br />
+<br /></p>
+
+<blockquote>
+  <p>[3]&amp;[6] DISCOVER ENTRYPOINTS</p>
+</blockquote>
+
+<figure class="highlight"><pre><code class="language-markdown" data-lang="markdown">Through the right, we try to gather interesting entrypoints by looking through js files, api calls (e.g get/post requests), url links, old versions of a webpage, web services etc.</code></pre></figure>
+
+<ul>
+  <li><strong>ATTACK SURFACE (ENTRYPOINTS)</strong></li>
+</ul>
+
+<table>
+  <thead>
+    <tr>
+      <th>Category</th>
+      <th>Component</th>
+      <th>Resource</th>
+      <th>Method</th>
+      <th>Entrypoint</th>
+      <th>Parameter</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Entrypoints</td>
+      <td>Rest API</td>
+      <td>/login</td>
+      <td>POST</td>
+      <td>api.corp.ng</td>
+      <td>username=admin&amp;password=***</td>
+    </tr>
+  </tbody>
+</table>
+
+<h1 id="conclusion">Conclusion</h1>
+<p>Attack surfaces change all the time from the introduction of new app servers, to changes in the software packages running on them and so on. Therefore it is crucial that different strategies be taken to keep accurate information of an applications attack surface. Today we have looked at enumerating attack surfaces via a typical recon workflow, but beyond identification it is also necessary to do analysis for determining high risk areas based on the different functionalities of the application. To read further on this, I recommend going through the owasp cheatsheet for attack surface analysis (https://github.com/OWASP/CheatSheetSeries/blob/master/cheatsheets/Attack_Surface_Analysis_Cheat_Sheet.md).</p>
+:ET
