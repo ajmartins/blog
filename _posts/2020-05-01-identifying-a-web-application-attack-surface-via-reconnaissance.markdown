@@ -65,7 +65,7 @@ This is probably the most important step as it involves visually identifying sub
 {% endhighlight %}
 * **ATTACK SURFACE (Input Vectors)**
 
-In navigating the application, the aim here is to discover any functionality in the application that accept input. 
+In navigating the application, the aim here is to discover any functionality in the application that accepts input. 
 
 | Category | Component | Notes
 |--------|---------|
@@ -132,7 +132,7 @@ What does it run on? Finally, using the valid list of subdomains as input again,
 
 >[9] FIND MISCONFIGURATIONS
 {% highlight markdown %}
-Quick misconfiguration checks for low-hanging fruits can either be made on the list of valid subdomains or from the target list. We can check for things like subdomain takeover or CORS misconfiguration etc. depending on the identified platforms.
+Quick misconfiguration checks can either be made on the list of valid subdomains or from the target list. We can check for things like subdomain takeover or CORS misconfiguration etc. depending on the identified platforms.
 
 {% endhighlight %}
 * **ATTACK SURFACE (3rd Party Platforms)**
@@ -179,4 +179,8 @@ Through the right, we try to gather interesting entrypoints by looking through j
 <br/>
 
 # Conclusion
-Attack surfaces change all the time from the introduction of new app servers, to changes in the software packages running on them and so on. Therefore it is crucial that different strategies be taken to keep accurate information of an applications attack surface. Today we have looked at enumerating attack surfaces via a typical recon workflow, but beyond identification it is also necessary to do analysis for determining high risk areas based on the different functionalities of the application. To read further on this, I recommend going through the owasp cheatsheet for attack surface analysis (https://github.com/OWASP/CheatSheetSeries/blob/master/cheatsheets/Attack_Surface_Analysis_Cheat_Sheet.md).
+Attack surfaces change all the time from the introduction of new app servers, to changes in the software packages running on them and so on. Therefore it is crucial that different strategies be taken to keep accurate information of an applications attack surface. Today we have looked at enumerating attack surfaces via a typical recon workflow, but beyond identification it is also necessary to do analysis for determining high risk areas based on the different functionalities of the application. To read further on this, I recommend going through the owasp cheatsheet for attack surface analysis:
+
+[Owasp Attack Surface Cheatsheet][owasp-link]
+
+[owasp-link]: https://github.com/OWASP/CheatSheetSeries/blob/master/cheatsheets/Attack_Surface_Analysis_Cheat_Sheet.md
