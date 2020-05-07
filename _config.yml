@@ -1,6 +1,6 @@
 title: Fisayo Ajayi
 description: > # this means to ignore newlines until "baseurl:"
-  A security engineer with a focus on application security.
+  Security engineer with a focus on application security.
 permalink: ':title/'
 baseurl: "" # the subpath of your site, e.g. /blog
 url: "" # the base hostname & protocol for your site, e.g. http://example.com
@@ -19,7 +19,7 @@ social-email: # add your Email address
 discus-identifier: aj # add your discus identifier
 
 # Tracker
-analytics: # Google Analytics
+analytics: UA-165820667-1
 
 # Build Settings
 markdown: kramdown
