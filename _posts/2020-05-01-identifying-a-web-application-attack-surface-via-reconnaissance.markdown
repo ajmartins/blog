@@ -8,9 +8,9 @@ fig-caption: # Add figcaption (optional)
 tags: [AttackSurface, Reconnaissance]
 ---
 
-[©Photo Credit][photo-credit]
+[©Cover Image][image-credit]
 
-[photo-credit]: https://twitter.com/samnewman
+[image-credit]: https://twitter.com/samnewman
 
 Gaining visibility into an application's attack surface is really important in identifying risk areas. In cases of an attack, it can also help in determining root cause i.e. the part(s) of an attack surface that was the origin of the breach. 
 
@@ -150,7 +150,7 @@ Quick misconfiguration checks can either be made on the list of valid subdomains
 ***Sometimes the flanks provide a better path to move upfield***
 ![Through The Middle]({{site.baseurl}}/assets/img/433-2.png)
 
->[2]&[5] DISCOVER PUBLIC EXPLOITS  
+>[2]&[7] DISCOVER PUBLIC EXPLOITS  
 {% highlight markdown %}
 Going through the left flank, we can use the output of the nmap results in the previous port scan to enumerate running web services (e.g. CMS Version) and search for disclosed vulnerabilities (searchsploit). 
 {% endhighlight %} 
@@ -165,7 +165,7 @@ Vulnerability scanners primarily perform this function, which is to identify ser
 <br/>
 <br/>
 
->[3]&[6] DISCOVER ENTRYPOINTS
+>[3]&[11] DISCOVER ENTRYPOINTS
 {% highlight markdown %}
 Through the right, we try to gather interesting entrypoints by looking through js files, api calls (e.g get/post requests), url links, old versions of a webpage, web services etc.
 {% endhighlight %}
