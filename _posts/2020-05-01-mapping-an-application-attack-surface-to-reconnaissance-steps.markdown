@@ -3,7 +3,7 @@ layout: post
 title: Mapping an Application's Attack Surface to Reconnaissance Steps 
 date: 2020-05-1 12:12:00 +0100
 description: Using an attackers perspective to enumerate attack surfaces in web applications. # Add post description (optional)
-img: 433.png # Add image post (optional)
+img: attacksurface.png # Add image post (optional)
 fig-caption: # Add figcaption (optional)
 tags: [AttackSurface, Reconnaissance]
 ---
