@@ -1,6 +1,6 @@
 title: Fisayo Ajayi
 description: > # this means to ignore newlines until "baseurl:"
-  Security engineer with a focus on application security.
+  Security engineer with an appetite for learning how to break and secure things.
 permalink: ':title/'
 baseurl: "" # the subpath of your site, e.g. /blog
 url: "" # the base hostname & protocol for your site, e.g. http://example.com
@@ -9,7 +9,7 @@ site-twitter: #if your site has a twitter account, enter it here
 # Author Settings
 author: Fisayo Ajayi # add your name
 author-img: aj.jpg # add your photo
-about-author: Security Engineer with a focus on Application Security. Always hungry to keep learning. # add description
+about-author: Security engineer with an appetite for learning how to break and secure things. Always hungry to keep learning. # add description
 social-twitter: # add your Twitter handle
 social-github: # add your Github handle
 social-linkedin: fisayoajayi # add your Linkedin handle
